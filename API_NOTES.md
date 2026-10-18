@@ -122,3 +122,9 @@ curl -L --retry 3 -o "F:\genlayer\gltest-cache\genvm-universal-v0.3.0-rc7.tar.xz
   https://github.com/genlayerlabs/genvm/releases/download/v0.3.0-rc7/genvm-runners-all.tar.xz
 py -3.13 scripts\patch_gltest_windows.py
 py -3.13 -m pytest tests/direct -v
+
+8. **runner header 必须是两行**：第 1 行 `# v0.2.16`（纯版本注释），第 2 行 `# { "Depends": ... }`。
+   只有 Depends 行会让 GenVM 静默回退到老的默认 runtime 并打 warn
+   "runner comment does not start with version, using default"，
+   该 runtime 上 `from genlayer import *` 不可靠地导出 `dataclass`。
+   另外 `dataclass` 必须从 `dataclasses` 显式导入，不能依赖通配导入。

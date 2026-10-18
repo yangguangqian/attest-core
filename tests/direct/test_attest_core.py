@@ -22,7 +22,7 @@ def _setup(direct_vm, direct_deploy, b_body=GOOD_B, b_llm=None):
 
 def _reg(contract, cid="c1", sources=None, minv=2):
     contract.register_claim(
-        cid, "What is the version?", json.dumps(sources or SRC_AB), "str", 100, minv
+        cid, "What is the version?", sources or SRC_AB, "str", 100, minv
     )
 
 

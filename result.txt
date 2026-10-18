@@ -1,0 +1,33 @@
+WARNING: File `gltest.config.yaml` not found in the current directory, using default config, create a `gltest.config.yaml` file to manage multiple networks
+INFO: Clearing artifacts directory: artifacts
+INFO: Using the following configuration:
+INFO:   RPC URL: http://127.0.0.1:4000/api
+INFO:   Selected Network: localnet
+INFO:   Available networks: ['localnet', 'studionet', 'testnet_asimov', 'testnet_bradbury']
+INFO:   Selected chain type: localnet
+INFO:   Available chains: localnet, studionet, testnet_asimov, testnet_bradbury
+INFO:   Contracts directory: contracts
+INFO:   Artifacts directory: artifacts
+INFO:   Environment: .env
+INFO:   Default wait interval: 3000 ms
+INFO:   Default wait retries: 50
+INFO:   Leader only mode: False
+============================= test session starts =============================
+platform win32 -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\Administrator\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: F:\genlayer\attest-core
+plugins: genlayer-test-0.29.2
+collecting ... collected 10 items
+
+tests/direct/test_attest_core.py::test_register_and_read PASSED          [ 10%]
+tests/direct/test_attest_core.py::test_register_duplicate_reverts PASSED [ 20%]
+tests/direct/test_attest_core.py::test_register_bad_json_reverts PASSED  [ 30%]
+tests/direct/test_attest_core.py::test_register_min_out_of_range PASSED  [ 40%]
+tests/direct/test_attest_core.py::test_resolve_reaches_quorum PASSED     [ 50%]
+tests/direct/test_attest_core.py::test_unresolved_when_a_source_is_ungrounded PASSED [ 60%]
+tests/direct/test_attest_core.py::test_contested_when_sources_disagree PASSED [ 70%]
+tests/direct/test_attest_core.py::test_validator_rejects_when_value_differs PASSED [ 80%]
+tests/direct/test_attest_core.py::test_challenge_marks_contested_and_bumps_epoch PASSED [ 90%]
+tests/direct/test_attest_core.py::test_challenge_rejects_duplicate_source PASSED [100%]
+
+============================= 10 passed in 1.67s ==============================

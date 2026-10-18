@@ -168,19 +168,22 @@ class AttestCore(gl.Contract):
         self,
         claim_id: str,
         question: str,
-        sources_json: str,
+        sources_json: DynArray[str],
         expected_type: str,
         tolerance_bp: u256,
         min_valid_sources: u256,
     ):
         if claim_id in self.claims:
             raise gl.vm.UserError("claim_id already exists")
-        try:
-            sources = json.loads(sources_json)
-        except Exception:
-            raise gl.vm.UserError("sources_json is not valid JSON")
-        if not isinstance(sources, list) or len(sources) == 0 or len(sources) > MAX_SOURCES:
-            raise gl.vm.UserError("sources must be a JSON array of 1..5 urls")
+        if isinstance(sources_json, str):
+            try:
+                sources = json.loads(sources_json)
+            except Exception:
+                raise gl.vm.UserError("sources_json is not valid JSON")
+        else:
+            sources = [str(s) for s in sources_json]
+        if len(sources) == 0 or len(sources) > MAX_SOURCES:
+            raise gl.vm.UserError("sources must contain 1..5 urls")
         if expected_type not in ("str", "num", "bool"):
             raise gl.vm.UserError("expected_type must be str, num or bool")
         if int(min_valid_sources) < 1 or int(min_valid_sources) > len(sources):
