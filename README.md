@@ -54,3 +54,10 @@ if band == "QUORUM":
 - `evidence/bradbury-register_claim.log`
 - `evidence/bradbury-resolve.log`
 - `evidence/result.txt` (offline direct-mode run, 10 passed)
+git add contracts/attest_core.py tests/direct/test_attest_core.py README.md
+git commit -m "fix: numeric consensus now binds the published fact
+
+- publish canonical bucket via _canon_num instead of the leader's raw value
+- canonicalize str/bool published values with _norm
+- validator requires canonical equality so every accepted output is reproducible
+- 3 regression tests; 2 fail against the pre-fix contract"

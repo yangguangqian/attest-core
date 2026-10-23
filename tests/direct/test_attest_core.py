@@ -128,3 +128,68 @@ def test_challenge_rejects_duplicate_source(direct_vm, direct_deploy, direct_ali
     _reg(c)
     with direct_vm.expect_revert("source already registered"):
         c.challenge("c1", SRC_AB[0])
+
+
+# ---- numeric canonical-fact regression (reviewer: numeric path must bind the fact) ----
+
+def _setup_num(direct_vm, direct_deploy, llm_value):
+    direct_vm.mock_web(r".*a\.example\.com.*", {"status": 200, "body": GOOD_A})
+    direct_vm.mock_web(r".*b\.example\.com.*", {"status": 200, "body": GOOD_B})
+    direct_vm.mock_llm(
+        r".*",
+        json.dumps({"found": True, "value": llm_value, "quote": "version is 1.3.0"}),
+    )
+    direct_vm.check_pickling = True
+    return direct_deploy("contracts/attest_core.py")
+
+
+def _reg_num(c, cid="n1"):
+    c.register_claim(cid, "What is the version?", SRC_AB, "num", 100, 2)
+
+
+def test_numeric_raw_101_is_published_as_canonical_100(
+    direct_vm, direct_deploy, direct_alice
+):
+    # leader 两侧都抽到 101 -> 发布事实必须是 canonical 桶，而不是原始 "101"
+    c = _setup_num(direct_vm, direct_deploy, "101")
+    direct_vm.sender = direct_alice
+    _reg_num(c)
+    c.resolve("n1")
+    f = json.loads(c.get_fact("n1"))
+    assert f["band"] == "QUORUM"
+    assert f["value"] == "100"            # 旧代码这里是 "101"
+
+
+def test_validator_binds_published_canonical_fact(
+    direct_vm, direct_deploy, direct_alice
+):
+    # leader 发布 canonical "100"；validator 独立读到 100 -> 容差内 -> 绑定通过
+    c = _setup_num(direct_vm, direct_deploy, "101")
+    direct_vm.sender = direct_alice
+    _reg_num(c)
+    c.resolve("n1")
+    direct_vm.clear_mocks()               # mock 只 append 不覆盖，必须全量重注册
+    direct_vm.mock_web(r".*a\.example\.com.*", {"status": 200, "body": GOOD_A})
+    direct_vm.mock_web(r".*b\.example\.com.*", {"status": 200, "body": GOOD_B})
+    direct_vm.mock_llm(
+        r".*",
+        json.dumps({"found": True, "value": "100", "quote": "version is 1.3.0"}),
+    )
+    assert direct_vm.run_validator() is True
+
+
+def test_numeric_bucket_boundary_rejects(direct_vm, direct_deploy, direct_alice):
+    # 145 vs 146 原始只差 0.7%（容差内），但 canonical 分属 140/150 两桶
+    # -> 拒绝 -> 交易转 UNDETERMINED（安全），而不是发布一个没被绑定的值
+    c = _setup_num(direct_vm, direct_deploy, "145")
+    direct_vm.sender = direct_alice
+    _reg_num(c)
+    c.resolve("n1")
+    direct_vm.clear_mocks()
+    direct_vm.mock_web(r".*a\.example\.com.*", {"status": 200, "body": GOOD_A})
+    direct_vm.mock_web(r".*b\.example\.com.*", {"status": 200, "body": GOOD_B})
+    direct_vm.mock_llm(
+        r".*",
+        json.dumps({"found": True, "value": "146", "quote": "version is 1.3.0"}),
+    )
+    assert direct_vm.run_validator() is False

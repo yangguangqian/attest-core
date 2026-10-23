@@ -1,5 +1,6 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 import json
+import math
 from dataclasses import dataclass
 
 from genlayer import *
@@ -24,6 +25,27 @@ def _to_float(s: str):
 def _nums_close(a: float, b: float, tolerance_bp: int) -> bool:
     base = abs(b) if b != 0 else 1.0
     return abs(a - b) / base <= tolerance_bp / 10000.0
+
+
+def _canon_num(x: float, tol_bp: int) -> str:
+    """Deterministic canonical decimal string for a numeric fact.
+
+    Quantizes x onto a relative grid that is coarser than the tolerance, so
+    every value a validator would accept collapses to the same published
+    string. Consumers see a stable fact instead of the leader's raw source
+    string, which may differ run to run.
+    """
+    if x != x:                                      # NaN
+        return ""
+    if x == 0:
+        return "0"
+    p = max(int(tol_bp), 1) / 10000.0
+    sig = max(1, int(math.ceil(-math.log10(p))))    # 1% -> 2 significant figures
+    mag = math.floor(math.log10(abs(x)))
+    step = 10.0 ** (mag - (sig - 1))
+    v = round(x / step) * step
+    s = ("%.10f" % v).rstrip("0").rstrip(".")
+    return s if s not in ("", "-0") else "0"
 
 
 def _build_prompt(question: str, expected_type: str, text: str) -> str:
@@ -95,7 +117,8 @@ def _evaluate(question, sources, expected_type, tolerance_bp, min_valid_sources)
                 hi = nums[-1][0]
                 base = abs(hi) if hi != 0 else 1.0
                 within = (hi - lo) / base <= int(tolerance_bp) / 10000.0
-                value = nums[0][1]["value"]
+                # Publish a canonical string, not the raw source string.
+                value = _canon_num(nums[0][0], tolerance_bp)
                 if within:
                     band = "QUORUM" if not failed else "CONTESTED"
                 else:
@@ -109,11 +132,11 @@ def _evaluate(question, sources, expected_type, tolerance_bp, min_valid_sources)
                 groups.setdefault(_norm(r["value"]), []).append(r)
             if len(groups) == 1:
                 band = "QUORUM" if not failed else "CONTESTED"
-                value = valid[0]["value"]
+                value = _norm(valid[0]["value"])
             else:
                 band = "CONTESTED"
                 biggest = max(groups.values(), key=len)
-                value = biggest[0]["value"]
+                value = _norm(biggest[0]["value"])
                 disagree = sorted([r["i"] for r in valid])
 
     return {
@@ -241,7 +264,11 @@ class AttestCore(gl.Contract):
                 b = _to_float(theirs["value"])
                 if a is None or b is None:
                     return _norm(mine["value"]) == _norm(theirs["value"])
-                return _nums_close(a, b, tol)
+                if not _nums_close(a, b, tol):
+                    return False
+                # Bind the published fact: the canonical bucket the leader
+                # will persist must be reproducible on the validator side.
+                return _canon_num(a, tol) == _canon_num(b, tol)
             return _norm(mine["value"]) == _norm(theirs["value"])
 
         out = None

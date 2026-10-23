@@ -1,0 +1,15 @@
+
+√ Network successfully set to Genlayer Bradbury Testnet
+- Fetching account info...
+
+Result:
+{
+  name: 'deployer',
+  address: '0x36e8f28ff5d705623a7a2ab7b18ac9e91b2d17f0',
+  balance: '99.9945405681257062 GEN',
+  network: 'Genlayer Bradbury Testnet',
+  status: 'locked',
+  active: true
+}
+
+√ Account info
