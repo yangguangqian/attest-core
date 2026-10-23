@@ -1,0 +1,99 @@
+
+--- write attempt 1: 0xa66d2F952E063e6BD69f7B5157CE0119f5F86796 resolve --args smoke-20261023170632
+[genlayer-js] initializeConsensusSmartContract() is deprecated and will be removed in a future release. The consensus contract is now resolved from the static chain definition.
+- Calling write method resolve on contract at 0xa66d2F952E063e6BD69f7B5157CE0119f5F86796...
+
+Write Transaction Hash:
+0xe17759c0c5741996472ebaa954458e69442db1bc8dbb886bd6358efbdf5cd1ad
+
+Result:
+{
+  currentTimestamp: '1792746894',
+  sender: '0x36e8F28fF5D705623A7A2AB7B18ac9e91b2d17F0',
+  recipient: '0xa66d2F952E063e6BD69f7B5157CE0119f5F86796',
+  initialRotations: 3n,
+  txSlot: '3',
+  createdTimestamp: '1792746863',
+  lastVoteTimestamp: '1792746891',
+  randomSeed: '0x12cda45a5ad563ccc81893f0cbb4323cd0067968f7dc842eb67f51f9332de5f8',
+  result: 1,
+  txExecutionHash: '0xc80420f605eabcac2d7f84e329452fe4eae1b59e1fbdeea9da863a8398ee8608',
+  txCalldata: '0xeeac1604617267730da401736d6f6b652d3230323631303233313730363332066d6574686f643c7265736f6c766500',
+  eqBlocksOutputs: '0xf885b87c003e0462616e6454554e5245534f4c5645440c64697361677265655f696478040a6661696c65645f696478040671756f74657394035b225c226c61746573745c223a5c22302e302e315c22222c20225c2276657273696f6e5c223a205c22302e302e315c22225d05746f74616c110576616c6964110576616c75650486706164646564',
+  queueType: 0,
+  queuePosition: '0',
+  activator: '0x183217483618c4EBd34C987DE400e01bEFfe5860',
+  lastLeader: '0xB7551beF37a05995218f9a1BB7A93e5B6705f535',
+  status: 5,
+  txId: '0xe17759c0c5741996472ebaa954458e69442db1bc8dbb886bd6358efbdf5cd1ad',
+  readStateBlockRange: {
+    activationBlock: '26217060',
+    processingBlock: '26217077',
+    proposalBlock: '26217080'
+  },
+  numOfRounds: '0',
+  lastRound: {
+    round: '0',
+    leaderIndex: '3',
+    votesCommitted: '5',
+    votesRevealed: '5',
+    appealBond: '0',
+    rotationsLeft: '3',
+    result: 1,
+    roundValidators: [
+      '0xfd811B16001077243e07173ec72a4735FF04C3AA',
+      '0x96298d411a2D622945BEACa6112374583b501d52',
+      '0x183217483618c4EBd34C987DE400e01bEFfe5860',
+      '0xB7551beF37a05995218f9a1BB7A93e5B6705f535',
+      '0x77a07271abB443F55be19c357AA35206BeB63E1d'
+    ],
+    validatorVotes: [ 3, 1, 3, 1, 1 ],
+    validatorVotesHash: [
+      '0x9b9b53e6f24ca42b434c5d67d0eb5c7fb1409d02f3556016e5bcd3ca04f3051b',
+      '0xd426d24bb64a3cb3552ced9600188a3c058a9e4dc629e8e972258dad793562cc',
+      '0xfa2a9906022324f0c92617848cf32b8df3d101cd831c5e146f78cef0544a208b',
+      '0x8b4ef2eafeeb7bd416137079701612b015b4afb25c707fc4c5d4829a35e36af9',
+      '0x5bcaf757a6ff34a7dc3ddead3405e63e0cb3c0ea3c9f211b3461eafc60ad884a'
+    ],
+    validatorResultHash: [
+      '0x9fc8d2d92c2ea25ae2ac3d9b20370cb9cb1e53d073b5c1a20b03621ca750f8df',
+      '0x6a91e6cfab2726adaf199eacf239b688ca2c7c190f11ab821d8fb73ffe73cdb9',
+      '0x9fc8d2d92c2ea25ae2ac3d9b20370cb9cb1e53d073b5c1a20b03621ca750f8df',
+      '0x6a91e6cfab2726adaf199eacf239b688ca2c7c190f11ab821d8fb73ffe73cdb9',
+      '0x6a91e6cfab2726adaf199eacf239b688ca2c7c190f11ab821d8fb73ffe73cdb9'
+    ],
+    validatorVotesName: [ 'TIMEOUT', 'AGREE', 'TIMEOUT', 'AGREE', 'AGREE' ]
+  },
+  consumedValidators: [
+    '0xfd811B16001077243e07173ec72a4735FF04C3AA',
+    '0x96298d411a2D622945BEACa6112374583b501d52',
+    '0x183217483618c4EBd34C987DE400e01bEFfe5860',
+    '0xB7551beF37a05995218f9a1BB7A93e5B6705f535',
+    '0x77a07271abB443F55be19c357AA35206BeB63E1d'
+  ],
+  txExecutionResult: 1,
+  txData: '0xeeac1604617267730da401736d6f6b652d3230323631303233313730363332066d6574686f643c7265736f6c766500',
+  txDataDecoded: { leaderOnly: false, type: 'call' },
+  numOfInitialValidators: '3',
+  status_name: 'ACCEPTED',
+  resultName: 'AGREE',
+  txExecutionResultName: 'FINISHED_WITH_RETURN'
+}
+
+√ Write operation successfully executed
+
+Error:
+Error: Timed out waiting for transaction 0xeeac1604617267730da401736d6f6b652d323032363130323331373036333206 to reach status "ACCEPTED" (current status: 0).
+    at Object.waitForTransactionReceipt (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:51752:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async ReceiptAction.receipt (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:55840:22)
+    at async Command.<anonymous> (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:56000:5)
+
+
+Result:
+{"band": "UNRESOLVED", "disagree_idx": "", "epoch": "1", "failed_idx": "", "quotes": ["\"latest\":\"0.0.1\"", "\"version\": \"0.0.1\""], "total_sources": "2", "valid_sources": "2", "value": ""}
+
+
+Result:
+UNRESOLVED
+

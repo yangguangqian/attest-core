@@ -1,0 +1,221 @@
+[34m?[39m [1mEnter password to decrypt keystore:[22m[39G[40G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m *[40G[41G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m **[41G[42G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m ***[42G[43G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m ****[43G[44G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m *****[44G[45G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m ******[45G[46G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m *******[46G[47G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m ********[47G[48G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m *********[48G[49G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m **********[49G[39G[2K[G[34m?[39m [1mEnter password to decrypt keystore:[22m **********[49G[2K[G[32m√[39m [1mEnter password to decrypt keystore:[22m [36m**********[39m[49G
+[?25h[genlayer-js] initializeConsensusSmartContract() is deprecated and will be removed in a future release. The consensus contract is now resolved from the static chain definition.
+- Calling write method register_claim on contract at 0xdd1802da457164dc0490aaf4d5a14a4797bb4782...
+GenLayer RPC error (eth_estimateGas): execution reverted
+Gas estimation failed, using default 200_000: UnknownRpcError: An unknown RPC error occurred.
+
+Details: execution reverted
+Version: viem@2.37.2
+    at withRetry.delay.count.count (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:27109:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async attemptRetry (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:25476:22) {
+  details: 'execution reverted',
+  docsPath: undefined,
+  metaMessages: undefined,
+  shortMessage: 'An unknown RPC error occurred.',
+  version: '2.37.2',
+  code: -1,
+  [cause]: { code: 3, message: 'execution reverted', data: '0xc1ba7c94' }
+}
+
+Error:
+Error: Transaction reverted: EVM tx 0x1ed8bd53e91f6c01043daf0307989568e986897063fb73a30ceb14dd7c08fbed to consensus contract 0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D was reverted.
+    at sendWithEncodedData (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:51418:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async _sendTransaction (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:51472:12)
+    at async WriteAction.write (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:55088:21)
+    at async Command.<anonymous> (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:55356:5)
+
+× Error during write operation
+== target ==
+claim_id=smoke-20261023164708 address=0xa66d2F952E063e6BD69f7B5157CE0119f5F86796 tolerance_bp=100 min_sources=1
+
+Result:
+{
+  alias: 'testnet-bradbury',
+  name: 'Genlayer Bradbury Testnet',
+  chainId: '4221',
+  rpc: 'https://rpc-bradbury.genlayer.com',
+  mainContract: '0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D',
+  stakingContract: '0x4A4449E617F8D10FDeD0b461CadEf83939E821A5',
+  explorer: 'https://explorer-bradbury.genlayer.com/'
+}
+
+
+Result:
+{
+  name: 'deployer',
+  address: '0x36e8f28ff5d705623a7a2ab7b18ac9e91b2d17f0',
+  balance: '99.9894599449186066 GEN',
+  network: 'Genlayer Bradbury Testnet',
+  status: 'locked',
+  active: true
+}
+
+== register_claim ==
+== target ==
+claim_id=smoke-20261023164928 address=0xa66d2F952E063e6BD69f7B5157CE0119f5F86796 tolerance_bp=100 min_sources=1
+
+Result:
+{
+  alias: 'testnet-bradbury',
+  name: 'Genlayer Bradbury Testnet',
+  chainId: '4221',
+  rpc: 'https://rpc-bradbury.genlayer.com',
+  mainContract: '0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D',
+  stakingContract: '0x4A4449E617F8D10FDeD0b461CadEf83939E821A5',
+  explorer: 'https://explorer-bradbury.genlayer.com/'
+}
+
+
+Result:
+{
+  name: 'deployer',
+  address: '0x36e8f28ff5d705623a7a2ab7b18ac9e91b2d17f0',
+  balance: '99.9894599449186066 GEN',
+  network: 'Genlayer Bradbury Testnet',
+  status: 'locked',
+  active: true
+}
+
+== register_claim ==
+== target ==
+claim_id=smoke-20261023165729 address=0xa66d2F952E063e6BD69f7B5157CE0119f5F86796 tolerance_bp=100 min_sources=1 wait_status=ACCEPTED
+
+Result:
+{
+  alias: 'testnet-bradbury',
+  name: 'Genlayer Bradbury Testnet',
+  chainId: '4221',
+  rpc: 'https://rpc-bradbury.genlayer.com',
+  mainContract: '0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D',
+  stakingContract: '0x4A4449E617F8D10FDeD0b461CadEf83939E821A5',
+  explorer: 'https://explorer-bradbury.genlayer.com/'
+}
+
+
+Result:
+{
+  name: 'deployer',
+  address: '0x36e8f28ff5d705623a7a2ab7b18ac9e91b2d17f0',
+  balance: '99.9894599449186066 GEN',
+  network: 'Genlayer Bradbury Testnet',
+  status: 'locked',
+  active: true
+}
+
+== register_claim ==
+
+Result:
+{
+  alias: 'testnet-bradbury',
+  name: 'Genlayer Bradbury Testnet',
+  chainId: '4221',
+  rpc: 'https://rpc-bradbury.genlayer.com',
+  mainContract: '0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D',
+  stakingContract: '0x4A4449E617F8D10FDeD0b461CadEf83939E821A5',
+  explorer: 'https://explorer-bradbury.genlayer.com/'
+}
+
+
+Result:
+{
+  name: 'deployer',
+  address: '0x36e8f28ff5d705623a7a2ab7b18ac9e91b2d17f0',
+  balance: '99.9890176551732772 GEN',
+  network: 'Genlayer Bradbury Testnet',
+  status: 'unlocked',
+  active: true
+}
+
+
+--- write attempt 1: 0xa66d2F952E063e6BD69f7B5157CE0119f5F86796 register_claim --args smoke-20261023170632 latest version? ["https://registry.npmjs.org/leftpad","https://cdn.jsdelivr.net/npm/leftpad/package.json"] num 100 1
+[genlayer-js] initializeConsensusSmartContract() is deprecated and will be removed in a future release. The consensus contract is now resolved from the static chain definition.
+- Calling write method register_claim on contract at 0xa66d2F952E063e6BD69f7B5157CE0119f5F86796...
+
+Write Transaction Hash:
+0x9e8a314cd8fac6cde858250ee7c008d09d5a951298094a2e3fe86fdfaab4c61d
+
+Result:
+{
+  currentTimestamp: '1792746424',
+  sender: '0x36e8F28fF5D705623A7A2AB7B18ac9e91b2d17F0',
+  recipient: '0xa66d2F952E063e6BD69f7B5157CE0119f5F86796',
+  initialRotations: 3n,
+  txSlot: '2',
+  createdTimestamp: '1792746410',
+  lastVoteTimestamp: '1792746417',
+  randomSeed: '0x82b36a108825e5599b9dd041f9a624bddfbc333c3b82882532a4e32abd771c66',
+  result: 1,
+  txExecutionHash: '0x2c9eec37c2d56a39291f078bbe239ca2d0e0e1333880513976d8dda696d30156',
+  txCalldata: '0xf8a5b8a216046172677335a401736d6f6b652d32303236313032333137303633327c6c61746573742076657273696f6e3f15940268747470733a2f2f72656769737472792e6e706d6a732e6f72672f6c6566747061648c0368747470733a2f2f63646e2e6a7364656c6976722e6e65742f6e706d2f6c6566747061642f7061636b6167652e6a736f6e1c6e756da10609066d6574686f647472656769737465725f636c61696d00',
+  eqBlocksOutputs: '0xc786706164646564',
+  queueType: 0,
+  queuePosition: '0',
+  activator: '0x3a130401885fD9322E2E21174A5496065f716b35',
+  lastLeader: '0x77a07271abB443F55be19c357AA35206BeB63E1d',
+  status: 5,
+  txId: '0x9e8a314cd8fac6cde858250ee7c008d09d5a951298094a2e3fe86fdfaab4c61d',
+  readStateBlockRange: {
+    activationBlock: '26215895',
+    processingBlock: '26215896',
+    proposalBlock: '26215900'
+  },
+  numOfRounds: '0',
+  lastRound: {
+    round: '0',
+    leaderIndex: '2',
+    votesCommitted: '5',
+    votesRevealed: '5',
+    appealBond: '0',
+    rotationsLeft: '3',
+    result: 1,
+    roundValidators: [
+      '0xfd811B16001077243e07173ec72a4735FF04C3AA',
+      '0xB7551beF37a05995218f9a1BB7A93e5B6705f535',
+      '0x77a07271abB443F55be19c357AA35206BeB63E1d',
+      '0xb4Fb7ADc6877a6A16bd131c7c9270834bD3DEf34',
+      '0x7c23E70217AB2A9E777940Eb769bA4198d1BaA61'
+    ],
+    validatorVotes: [ 1, 1, 1, 1, 1 ],
+    validatorVotesHash: [
+      '0xf90b5ff2f6eb58fae936ea0ac174fdfe55146d27b66f62c71d39b4dd2a56e155',
+      '0xbfa80acad0b64b35efa87d6c23d258c435c97fa966002f429f1e875e48334c2e',
+      '0x3b4488b2bf6d3d6373e33d05a36446a4e192918f9910f3ebcafd78751f0b4440',
+      '0x73b7ee2f234981e9af588eae428f38514d2050c50be4fd7cc2078932c1656eff',
+      '0x7bb81dbec8887afce7d5914d710de01b53aae6720d22c94f8e6e26ba1e637c71'
+    ],
+    validatorResultHash: [
+      '0xcebde15e6e46f7e1fa4778eb0b1db6b82c55f89ac795685c492f71ee08313a1c',
+      '0xcebde15e6e46f7e1fa4778eb0b1db6b82c55f89ac795685c492f71ee08313a1c',
+      '0xcebde15e6e46f7e1fa4778eb0b1db6b82c55f89ac795685c492f71ee08313a1c',
+      '0xcebde15e6e46f7e1fa4778eb0b1db6b82c55f89ac795685c492f71ee08313a1c',
+      '0xcebde15e6e46f7e1fa4778eb0b1db6b82c55f89ac795685c492f71ee08313a1c'
+    ],
+    validatorVotesName: [ 'AGREE', 'AGREE', 'AGREE', 'AGREE', 'AGREE' ]
+  },
+  consumedValidators: [
+    '0xfd811B16001077243e07173ec72a4735FF04C3AA',
+    '0xB7551beF37a05995218f9a1BB7A93e5B6705f535',
+    '0x77a07271abB443F55be19c357AA35206BeB63E1d',
+    '0xb4Fb7ADc6877a6A16bd131c7c9270834bD3DEf34',
+    '0x7c23E70217AB2A9E777940Eb769bA4198d1BaA61'
+  ],
+  txExecutionResult: 1,
+  txData: '0xf8a5b8a216046172677335a401736d6f6b652d32303236313032333137303633327c6c61746573742076657273696f6e3f15940268747470733a2f2f72656769737472792e6e706d6a732e6f72672f6c6566747061648c0368747470733a2f2f63646e2e6a7364656c6976722e6e65742f6e706d2f6c6566747061642f7061636b6167652e6a736f6e1c6e756da10609066d6574686f647472656769737465725f636c61696d00',
+  txDataDecoded: { leaderOnly: false, type: 'call' },
+  numOfInitialValidators: '3',
+  status_name: 'ACCEPTED',
+  resultName: 'AGREE',
+  txExecutionResultName: 'FINISHED_WITH_RETURN'
+}
+
+√ Write operation successfully executed
+
+Error:
+Error: Timed out waiting for transaction 0xf8a5b8a216046172677335a401736d6f6b652d32303236313032333137303633 to reach status "ACCEPTED" (current status: 0).
+    at Object.waitForTransactionReceipt (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:51752:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async ReceiptAction.receipt (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:55840:22)
+    at async Command.<anonymous> (file:///D:/nvm/installs/v24.22.0/node_modules/genlayer/dist/index.js:56000:5)
+
